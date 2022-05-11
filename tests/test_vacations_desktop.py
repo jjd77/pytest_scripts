@@ -93,5 +93,6 @@ class TestCases(Setup):
         my_account_page = LoggedInPage(self.driver)
         my_account_page.check_user_header(username, user_surname)
         my_account_page.verify_my_account_page_title()
+        my_account_page.logout_user()
 
 
