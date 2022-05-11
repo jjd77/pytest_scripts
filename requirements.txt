@@ -1,5 +1,2 @@
-python
-pytest
-java
-allure
-webdriver
+pytest~=7.0.1
+selenium~=3.141.0
