@@ -19,7 +19,7 @@ class RegisterPage:
         self.alert_validations_section_css = "div.alert p"
         self.password_input_field_name = "password"
         self.password_confirm_input_field_name = "confirmpassword"
-        #self.top_nav_my_account_button_#TODO
+
 
     @allure.step("veryfy page title")
     def verify_register_page_title(self):
