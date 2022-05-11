@@ -1,15 +1,13 @@
-from selenium import webdriver
-import pytest
-from webdriver_manager.chrome import ChromeDriverManager
-
-from vacations_with_po.pageobjects.LoggedInPage import LoggedInPage
-from vacations_with_po.pageobjects.MainPage import MainPage
-from vacations_with_po.pageobjects.ResultsPage import ResultsPage
-from vacations_with_po.pageobjects.RegisterPage import RegisterPage
-import time
-import allure
 import random
+import time
 
+import allure
+import pytest
+from selenium import webdriver
+from pytest_scripts2.pageobjects.LoggedInPage import LoggedInPage
+from pytest_scripts2.pageobjects.MainPage import MainPage
+from pytest_scripts2.pageobjects.RegisterPage import RegisterPage
+from pytest_scripts2.pageobjects.ResultsPage import ResultsPage
 
 # pytest test_vacations_desktop.py
 # pytest --alluredir=C:\development\pytest_scripts\vacations_with_po\report
@@ -35,7 +33,7 @@ class Setup:
 
 class TestCases(Setup):
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     @allure.title("test_search_results_are_correct")
     @allure.description("Verify searching, validates hotels and prices lists")
     def test_search_results_are_correct(self):
