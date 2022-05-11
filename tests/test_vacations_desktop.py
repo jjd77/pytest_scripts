@@ -35,7 +35,7 @@ class Setup:
 
 class TestCases(Setup):
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     @allure.title("test_search_results_are_correct")
     @allure.description("Verify searching, validates hotels and prices lists")
     def test_search_results_are_correct(self):
