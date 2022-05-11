@@ -1,5 +1,6 @@
 from selenium import webdriver
 import pytest
+from webdriver_manager.chrome import ChromeDriverManager
 
 from vacations_with_po.pageobjects.LoggedInPage import LoggedInPage
 from vacations_with_po.pageobjects.MainPage import MainPage
@@ -20,7 +21,7 @@ class Setup:
     @allure.title("Test setup - get the page, maximize, set driver; teardown.")
     @pytest.fixture(autouse=True)
     def test_setup(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome("C:/bin/chromedriver.exe")
         self.driver.implicitly_wait(12)
         self.driver.get('http://www.kurs-selenium.pl/')
         self.driver.maximize_window()
@@ -94,6 +95,5 @@ class TestCases(Setup):
         my_account_page = LoggedInPage(self.driver)
         my_account_page.check_user_header(username, user_surname)
         my_account_page.verify_my_account_page_title()
-        #sth
 
 
