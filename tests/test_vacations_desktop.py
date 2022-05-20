@@ -9,31 +9,18 @@ from pytest_scripts2.pageobjects.MainPage import MainPage
 from pytest_scripts2.pageobjects.RegisterPage import RegisterPage
 from pytest_scripts2.pageobjects.ResultsPage import ResultsPage
 
+
 # pytest test_vacations_desktop.py
-# pytest --alluredir=C:\development\pytest_scripts\vacations_with_po\report
-# allure serve C:\development\pytest_scripts\vacations_with_po\report
+# pytest --screenshot=on --screenshot_path=C:\development\pytest_scripts\pytest_scripts2\reports\screenshots --alluredir=C:\development\pytest_scripts\pytest_scripts2\reports
+# pytest --screenshot=on --alluredir=C:\development\pytest_scripts\pytest_scripts2\reports
+# pytest --alluredir=C:\development\pytest_scripts\pytest_scripts2\reports
+# allure serve C:\development\pytest_scripts\pytest_scripts2\reports
 
 
-class Setup:
+@pytest.mark.usefixtures
+class TestCases:
 
-    @allure.title("Test setup - get the page, maximize, set driver; teardown.")
-    @pytest.fixture(autouse=True)
-    def test_setup(self):
-        self.driver = webdriver.Chrome("C:/bin/chromedriver.exe")
-        self.driver.implicitly_wait(12)
-        self.driver.get('http://www.kurs-selenium.pl/')
-        self.driver.maximize_window()
-        self.driver.get_screenshot_as_png()
-        assert self.driver.title == 'PHPTRAVELS | Travel Technology Partner', 'Error - page title was changed'
-
-        yield
-        time.sleep(5)
-        self.driver.close()
-
-
-class TestCases(Setup):
-
-    @pytest.mark.skip
+    # @pytest.mark.skip
     @allure.title("test_search_results_are_correct")
     @allure.description("Verify searching, validates hotels and prices lists")
     def test_search_results_are_correct(self):
@@ -51,7 +38,7 @@ class TestCases(Setup):
         verify_results.verify_results_page_title()
         verify_results.check_if_expected_hotel_was_found("Jumeirah Beach Hotel")
         found_hotels_prices = verify_results.get_hotels_prices_list()
-        # assert str(found_hotels_prices[0])[1:] == '14.30'
+        # assert str(found_hotels_prices[0])[1:] == '7381297'  # uncomment to check failed result
 
     @allure.title("test user creation")
     @allure.description("test user creation and metadata fields on the form")
@@ -78,7 +65,7 @@ class TestCases(Setup):
         sign_up_page.input_email_address("INVALID-EMAIL.COM")
         sign_up_page.click_sign_up_button()
         sign_up_page.validation_message_check("The Email field must contain a valid email address.")
-        valid_email = ("valid" + str(random.randint(0,10000)) + "@mail.com")
+        valid_email = ("valid" + str(random.randint(0, 10000)) + "@mail.com")
         sign_up_page.input_email_address(valid_email)
         sign_up_page.set_password("123")
         sign_up_page.click_sign_up_button()
@@ -94,5 +81,3 @@ class TestCases(Setup):
         my_account_page.check_user_header(username, user_surname)
         my_account_page.verify_my_account_page_title()
         my_account_page.logout_user()
-
-
