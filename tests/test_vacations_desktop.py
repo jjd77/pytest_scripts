@@ -1,9 +1,6 @@
 import random
-import time
 
 import allure
-import pytest
-from selenium import webdriver
 from pytest_scripts2.pageobjects.LoggedInPage import LoggedInPage
 from pytest_scripts2.pageobjects.MainPage import MainPage
 from pytest_scripts2.pageobjects.RegisterPage import RegisterPage
@@ -17,7 +14,6 @@ from pytest_scripts2.pageobjects.ResultsPage import ResultsPage
 # allure serve C:\development\pytest_scripts\pytest_scripts2\reports
 
 
-@pytest.mark.usefixtures
 class TestCases:
 
     # @pytest.mark.skip
