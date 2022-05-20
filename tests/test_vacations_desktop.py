@@ -1,6 +1,7 @@
 import random
 
 import allure
+import pytest
 from pytest_scripts2.pageobjects.LoggedInPage import LoggedInPage
 from pytest_scripts2.pageobjects.MainPage import MainPage
 from pytest_scripts2.pageobjects.RegisterPage import RegisterPage
@@ -36,6 +37,7 @@ class TestCases:
         found_hotels_prices = verify_results.get_hotels_prices_list()
         # assert str(found_hotels_prices[0])[1:] == '7381297'  # uncomment to check failed result
 
+    @pytest.mark.skip
     @allure.title("test user creation")
     @allure.description("test user creation and metadata fields on the form")
     def test_create_new_user(self):

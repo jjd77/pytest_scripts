@@ -19,10 +19,12 @@ def test_setup(request):
     driver.get('http://www.kurs-selenium.pl/')
     driver.maximize_window()
     request.cls.driver = driver
+    before_failed = request.session.testsfailed
     driver.get_screenshot_as_png()
     assert driver.title == 'PHPTRAVELS | Travel Technology Partner', 'Error - page title was changed'
 
     yield
+    if request.session.testsfailed != before_failed:
+        allure.attach(driver.get_screenshot_as_png(), name='Failed', attachment_type=AttachmentType.PNG)
     time.sleep(4)
     driver.close()
-
